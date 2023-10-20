@@ -2,14 +2,23 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Hero from '@/components/Hero/Hero'
 import useAuthUser from '@/hooks/useAuthUser'
+import Slidebar from '@/components/Slidebar/Slidebar'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  useAuthUser();
+  // const user = useAuthUser();
+  // console.log(user)
+  // if(!user) return <Hero />
+
   return (
-    <main className='CustomImg'>
+    <div>
       <Hero />
-    </main>
+    </div>
+    // <div className='app'> 
+    //   <div className='app__body'>
+    //     <Slidebar user={user} />
+    //   </div>
+    // </div>
   )
 }
