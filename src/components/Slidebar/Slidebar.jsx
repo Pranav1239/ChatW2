@@ -18,9 +18,19 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  serverTimestamp,
+  where,
+} from "firebase/firestore";
 import { auth, db } from "@/utils/firebase";
 import { useRouter } from "next/navigation";
+import useRooms from "@/hooks/useRooms";
+import useUsers from "@/hooks/useUsers";
+import useChats from "@/hooks/useChats";
 
 const sidebarMenu = [
   {
@@ -42,7 +52,9 @@ export default function Slidebar({ user }) {
   const [open, setOpen] = useState(false);
   const [roomname, setRoomname] = useState("");
   const router = useRouter();
-
+  const rooms = useRooms();
+  const users = useUsers(user);
+  const chats = useChats(user);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -51,9 +63,9 @@ export default function Slidebar({ user }) {
     setOpen(false);
   };
 
-  const handleSignOut = ()=>{
+  const handleSignOut = () => {
     auth.signOut();
-  }
+  };
 
   async function createRoom() {
     // console.log(roomname);
@@ -64,20 +76,11 @@ export default function Slidebar({ user }) {
         timestamp: serverTimestamp(),
       });
       handleClose();
-      setRoomname('');
-      setMenu(2)
-      router.push(`/?roomId=${newRoom.id}`); 
+      setRoomname("");
+      setMenu(2);
+      router.push(`/?roomId=${newRoom.id}`);
     }
   }
-
-  const data = [
-    {
-      id: 1,
-      name: "john doe",
-      photoURL:
-        "https://lh3.googleusercontent.com/a/ACg8ocKSbhxEqAe2x3OOydLMv5qb6nJQu_iYtaJOQDVLeNhtw7g=s96-c",
-    },
-  ];
 
   return (
     <div className="sidebar">
@@ -91,18 +94,6 @@ export default function Slidebar({ user }) {
             <ExitToApp />
           </IconButton>
         </div>
-      </div>
-      {/* slidebar search */}
-      <div className="sidebar__search">
-        <form className="sidebar_search--container" action="">
-          <SearchOutlined />
-          <Input
-            type="text"
-            id="search"
-            placeholder="Search for users or rooms"
-            className="px-5"
-          />
-        </form>
       </div>
       {/* sidebar menu */}
       <div className="sidebar__menu">
@@ -121,11 +112,11 @@ export default function Slidebar({ user }) {
       </div>
 
       {menu === 1 ? (
-        <SidebarList title="Chats" data={data} />
+        <SidebarList title="Chats" data={chats} />
       ) : menu === 2 ? (
-        <SidebarList title="Rooms" data={data} />
+        <SidebarList title="Rooms" data={rooms} />
       ) : menu === 3 ? (
-        <SidebarList title="Users" data={data} />
+        <SidebarList title="Users" data={users} />
       ) : menu === 4 ? (
         <SidebarList title="Search Results" data={data} />
       ) : null}
@@ -157,7 +148,7 @@ export default function Slidebar({ user }) {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={createRoom}>Subscribe</Button>
+            <Button onClick={createRoom}>Create</Button>
           </DialogActions>
         </Dialog>
       </div>

@@ -1,37 +1,38 @@
-import Image from "next/image";
 import Link from "next/link";
-import Navbar from "../Header/Navbar";
 import Footer from "../Footer/Footer";
-import { Button } from "@mui/material";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Tpyejs from "../Common/Tpyejs";
 export default function Hero() {
+  const errorLogin = ()=>{
+    toast.error('PleaseLogin', { theme: "colored" });
+  }
   return (
-    <div className="bg-black">
+    <div className="bg-white">
       <section>
-        <Navbar />
-      </section>
-      <section>
-        <div className="mt-10 lg:w-3/4 xl:w-2/4 relative z-10">
+      <ToastContainer />
+        <div className=" lg:w-3/4 xl:w-2/4 relative z-10">
           <div className="p-20">
-            <h1 className="text-white text-4xl md:text-5xl xl:text-6xl font-bold leading-tight">
-              Lorem ipsum dolor sit amet consectetur elit.
+            <h1 className="text-black text-2xl md:text-5xl xl:text-6xl font-bold leading-tight">
+            you can create or join groups and chat with other members in real time.
             </h1>
-            <p className="text-blue-100 text-xl md:text-2xl leading-snug mt-4">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere
-              quibusdam ut necessitatibus?
+            <p className="text-black text-xl md:text-2xl leading-snug mt-4">
+            To chat with members or in groups, you must first log in to your account. Once you are logged in
             </p>
             <div className="flex flex-row gap-4">
 
               <Link
-                href={"/chat"}
-                className="px-8 py-4 bg-purple-700 hover:bg-purple-900 text-white rounded inline-block mt-8 font-semibold"
+                href={"/"}
+                onClick={errorLogin}
+                className="px-8 py-4 bg-[#000000] hover:bg-slate-900 text-white rounded inline-block mt-8 font-semibold"
               >
-                Book Appointment
+               Visit Chat
               </Link>
-              <Link href={"/login"}>
-              <Button 
-              className="px-8 py-4  text-white rounded inline-block mt-8 font-semibold" variant="outlined">
+              <Link
+                href={"/login"}
+                className="px-8 py-4 bg-[#000000] hover:bg-slate-900 text-white rounded inline-block mt-8 font-semibold"
+              >
                 Login
-              </Button>
               </Link>
             </div>
           </div>
@@ -42,9 +43,9 @@ export default function Hero() {
       </div>
       <section>
         <div className="flex justify-center">
-          <h1 className="text-white text-2xl lg:text-5xl font-bold">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, odit.</h1>
+            <Tpyejs />
         </div>
-      </section>
+      </section> 
       <section>
         <Footer />
       </section>

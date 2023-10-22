@@ -5,7 +5,7 @@ import { getAuth , GoogleAuthProvider } from 'firebase/auth'
 import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBG6Li3M6CO1tCaxLM4NHFt0xJq6Ib2Ki8',
+  apiKey: "AIzaSyBG6Li3M6CO1tCaxLM4NHFt0xJq6Ib2Ki8",
   authDomain: "chatv2-f04cb.firebaseapp.com",
   projectId: "chatv2-f04cb",
   storageBucket: "chatv2-f04cb.appspot.com",

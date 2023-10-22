@@ -16,7 +16,7 @@
 
 * {
   scrollbar-width: auto;
-  scrollbar-color: #730f8f #000000;
+  scrollbar-color: #908694 #000000;
 }
 
 *::-webkit-scrollbar {
@@ -28,7 +28,7 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #730f8f;
+  background-color: #908694;
   border-radius: 10px;
   border: 0px none #ffffff;
 }
@@ -932,7 +932,6 @@ em {
 }
 
 .chat__background {
-  background-image: url("/background.png");
   background-size: contain;
   background-position: center;
   position: absolute;
@@ -981,6 +980,8 @@ em {
   display: flex;
   justify-content: space-between;
   min-width: 50px;
+  align-items: center;
+  justify-content: center;
 }
 
 .chat__header--right > .MuiButtonBase-root {

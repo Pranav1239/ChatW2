@@ -12,7 +12,7 @@ export default function SidebarList({ title, data }) {
 
   return (
     <div className="sidebar__chat--container">
-      <h4 className="text-2xl font-semibold  p-2 ">Title</h4>
+      <h4 className="text-2xl font-semibold  p-2 ">{title}</h4>
       {
       data.map(item => (
         <SidebarItems key={item.id} item={item} />
